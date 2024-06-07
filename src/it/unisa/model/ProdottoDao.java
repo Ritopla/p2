@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -151,11 +152,19 @@ public class ProdottoDao implements ProdottoDaoInterfaccia{
 
 		ArrayList<ProdottoBean> products = new ArrayList<ProdottoBean>();
 
-		String selectSQL = "SELECT * FROM " + ProdottoDao.TABLE_NAME;
+		List<String> allowedColumns = Arrays.asList("column1", "column2", "column3");
+        
+        // L'input per l'ordine, ad esempio dall'utente
+        String order = "column1"; // Esempio di input dell'utente
 
-		if (order != null && !order.equals("")) {
-			selectSQL += " ORDER BY " + order;
-		}
+        // Inizializza il selectSQL con una stringa di base
+        String selectSQL = "SELECT * FROM " + ProdottoDao.TABLE_NAME;
+
+        if (order != null && !order.equals("") && allowedColumns.contains(order)) {
+            selectSQL += " ORDER BY " + order;
+        } else if (order != null && !allowedColumns.contains(order)) {
+            throw new IllegalArgumentException("Ordine non valido: " + order);
+        }
 
 		try {
 			connection = ds.getConnection();
