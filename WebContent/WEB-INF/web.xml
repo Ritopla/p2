@@ -9,4 +9,8 @@
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
+  <error-page>
+    <error-code>500</error-code> <!-- Codice di errore 500 -->
+    <location>/error500.jsp</location> <!-- Percorso della pagina di errore personalizzata -->
+  </error-page>
 </web-app>
