@@ -4,7 +4,7 @@ public class ItemCarrello {
 
 	public ItemCarrello(ProdottoBean prodotto){
 		this.prodotto = prodotto;
-		quantit‡Carrello = 1;
+		quantityCarrello = 1;
 	}
 	
 	public ProdottoBean getProdotto() {
@@ -15,12 +15,12 @@ public class ItemCarrello {
 		this.prodotto = prodotto;
 	}
 	
-	public int getQuantit‡Carrello() {
-		return quantit‡Carrello;
+	public int getQuantityCarrello() {
+		return quantityCarrello;
 	}
 	
-	public void setQuantit‡Carrello(int quantit‡) {
-		this.quantit‡Carrello = quantit‡;
+	public void setQuantityCarrello(int quantity) {
+		this.quantityCarrello = quantity;
 	}
 	
 	public int getId() {
@@ -28,7 +28,7 @@ public class ItemCarrello {
 	}
 	
 	public double getTotalPrice() {
-		return quantit‡Carrello * prodotto.getPrezzo();
+		return quantityCarrello * prodotto.getPrezzo();
 		
 
 	}
@@ -38,15 +38,15 @@ public class ItemCarrello {
 	}
 	
 	public void incrementa() {
-		if(quantit‡Carrello < prodotto.getQuantit‡() )
-			quantit‡Carrello = quantit‡Carrello + 1;
+		if(quantityCarrello < prodotto.getQuantity() )
+			quantityCarrello = quantityCarrello + 1;
 	}
 	
 	public void decrementa() {
-		if( quantit‡Carrello > 1)
-			quantit‡Carrello = quantit‡Carrello - 1;
+		if( quantityCarrello > 1)
+			quantityCarrello = quantityCarrello - 1;
 	}
 	
 	private ProdottoBean prodotto;
-	private int quantit‡Carrello;
+	private int quantityCarrello;
 }
