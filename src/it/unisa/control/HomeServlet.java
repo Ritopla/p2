@@ -27,7 +27,21 @@ public class HomeServlet extends HttpServlet {
 		ProdottoDao dao = new ProdottoDao();
 		
 		ArrayList<ArrayList<ProdottoBean>> categorie = new ArrayList<>();
-		String redirectedPage = request.getParameter("page");
+		
+		ArrayList<String> blacklist = new ArrayList<>(); //creating a blacklist of not approved parameters for page
+		blacklist.add("META-INF/context.xml");
+		blacklist.add("WEB-INF/web.xml");
+		
+		String redirectedPage = request.getParameter("page"); //page control on the blacklist
+		
+		if(blacklist.contains(redirectedPage)) {
+			
+			System.out.println("Corrispondenza blacklist");
+			redirectedPage = "";
+			
+		}
+			
+		
 		
 		try {
 			ArrayList<ProdottoBean> PS5 = dao.doRetrieveByPiattaforma("PlayStation 5");
